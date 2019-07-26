@@ -79,28 +79,28 @@ function createDir( notExistDirs, routeDirs, validRequest, homePath, rootPath ){
 </head>
 <body>
      <h1>${ currentTitle }</h1>
+     <p>This is html part. Please build main.js to have ReactJS part.</p>
      <div id="root" class="main"></div>
      <script type="application/javascript" src="/build/react/${ currentTitle }.bundle.js"></script>
 </body>
 </html>`;
 
-    const header =
-`${ headerFile.replace( '<base href="">', `<base href="${ currentPath }">` ) }
-<div class="header">
-        <div class="content-r">
-          <h1>
-            ${ tmp === "/" ?  homepageTitle : `<a href="${ baseURL }/" >${ homepageTitle }</a>` }
-          </h1>
-          <hr>
-          <h1><a href="${ baseURL + parentLink }">${ parentTitle || "" }</a></h1>
-        </div>
-    </div>`;
+    const mainJs =
+`import React, { Fragment, Component } from "react";
+import { render } from "react-dom";
 
+const rootJs = <Fragment>
+    <h1>${ currentTitle }</h1>
+    <p>This is React.js part; ready to go.</p>
+</Fragment>;
+
+const rootHtml = document.getElementById( "root" );
+render( rootJs, rootHtml );`;
 
         try {
             fs.mkdirSync( absolutePath );
             fs.symlinkSync( ( parentTitle === null ? "../build/html/footer.html" : "../footer.html" ), absolutePath + "/footer.html" );
-            fs.writeFileSync( absolutePath + "/header.html", header );
+            fs.writeFileSync( absolutePath + "/main.js", mainJs );
             fs.writeFileSync( absolutePath + "/main.html", main );
             routeDirs.push( path );
             log( CREATE, "." + path );
