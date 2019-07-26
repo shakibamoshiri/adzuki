@@ -71,16 +71,18 @@ function createDir( notExistDirs, routeDirs, validRequest, homePath, rootPath ){
 
         const absolutePath = rootPath + path;
         const main =
-`<main>
-	<div class="content-r">
-		<h1>${ currentTitle  }</h1>
-        ${ parentTitle === null && validRequest.map( function( path ){ return `<span>path:</span> <a href="${ baseURL + path }">${ path }</a>`}).join( "<br>" ) || ""  }
-		DD_MM_YYYY
-        <div class="edit-on-github">
-            ${ gitinfo[0] && gitinfo[1] && `<a target="_blank" href="https://github.com/${ gitinfo[0] }/${ gitinfo[1] }/blob/master${ gitPath }main.html">Edit on Github</a>`  || ""  }
-        </div>
-	</div>
-</main>`;
+`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>${ currentTitle  }</title>
+</head>
+<body>
+     <h1>${ currentTitle }</h1>
+     <div id="root" class="main"></div>
+     <script type="application/javascript" src="/build/react/${ currentTitle }.bundle.js"></script>
+</body>
+</html>`;
 
     const header =
 `${ headerFile.replace( '<base href="">', `<base href="${ currentPath }">` ) }
