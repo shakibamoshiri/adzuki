@@ -8,7 +8,7 @@ function getContent( path, mtime ){
     const header = fs.readFileSync( path + "/header.html", "utf8" );
 	const footer = fs.readFileSync( path + "/footer.html", "utf8" );
 
-	return header + main + footer;
+	return main;
 }
 
 module.exports = getContent;
