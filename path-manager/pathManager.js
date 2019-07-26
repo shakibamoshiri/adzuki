@@ -19,23 +19,12 @@ const user = dm.user;
 const globalRootPath = __dirname.split( "/" ).slice( 0, -1 ).join( "/" );
 const log = console.log;
 
-const headerFile = (function(){
-    try {
-        return fs.readFileSync( globalRootPath + "/build/html/header.html", "utf8" );
-    } catch( exception ){
-        log( exception.message );
-        log( "header.html is required!" );
-        process.exit( 0 );
-    }
-}());
-
 const gitinfo = [];
 gitinfo[ 0 ] = user.git.username;
 gitinfo[ 1 ] = user.git.repository;;
 
 const baseURL = user.baseURL;
 const homepageTitle = user.homeTitle;
-
 
 const mainHtmlDir = fs.existsSync( globalRootPath + "/main-html/" );
 if( !mainHtmlDir ){
@@ -99,7 +88,6 @@ render( rootJs, rootHtml );`;
 
         try {
             fs.mkdirSync( absolutePath );
-            fs.symlinkSync( ( parentTitle === null ? "../build/html/footer.html" : "../footer.html" ), absolutePath + "/footer.html" );
             fs.writeFileSync( absolutePath + "/main.js", mainJs );
             fs.writeFileSync( absolutePath + "/main.html", main );
             routeDirs.push( path );
