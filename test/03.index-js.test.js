@@ -39,7 +39,7 @@ const bundledFiles = checkBundleFile( OUTPUT_PATH );
 
 // log( "bundledFiles\n", bundledFiles );
 /*
-    Finding all main.js files inside ENTRY_PATH
+    Finding all index.js files inside ENTRY_PATH
     recursively and return an array of them
 */
 function readDirRec( path, list = [] ){
@@ -60,13 +60,13 @@ function readDirRec( path, list = [] ){
 
 
 /*
-    just return main.js files
+    just return index.js files
     then if skip those that already in OUTPUT_PATH
     and store the rest on an object and return it
 */
 const mainJsFiles =
 readDirRec( ENTRY_PATH ).filter(function( file ){
-    return path.basename( file ) === "main.js";
+    return path.basename( file ) === "index.js";
 });
 // log( "mainJsFiles\n", mainJsFiles );
 
@@ -88,7 +88,7 @@ const jsNotBundled = mainJsFiles.reduce(function( result, name ){
 
 // log( "jsNotBundled\n", jsNotBundled );
 
-describe( "main.js files", function(){
+describe( "index.js files", function(){
     const rest = mainJsFiles.length - bundledFiles.length;
 
     it( `mainJsFiles (${ mainJsFiles.length }) minus bundledFiles (${ bundledFiles.length }) should be equal to ${ rest }`, function(){
