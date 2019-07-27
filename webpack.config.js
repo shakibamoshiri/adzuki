@@ -37,7 +37,7 @@ function checkBundleFile( path ){
 const bundledFiles = checkBundleFile( OUTPUT_PATH );
 
 /*
-    Finding all main.js files inside ENTRY_PATH
+    Finding all index.js files inside ENTRY_PATH
     recursively and return an array of them
 */
 function readDirRec( path, list = [] ){
@@ -57,12 +57,12 @@ function readDirRec( path, list = [] ){
 }
 
 /*
-    just return main.js files
+    just return index.js files
     then if skip those that already in OUTPUT_PATH
     and store the rest on an object and return it
 */
 const mainJsFiles = readDirRec( ENTRY_PATH ).filter(function( file ){
-    return path.basename( file ) === "main.js";
+    return path.basename( file ) === "index.js";
 });
 
 const jsNotBundled = mainJsFiles.reduce(function( result, name ){
@@ -88,7 +88,7 @@ const jsNotBundled = mainJsFiles.reduce(function( result, name ){
 */
 if( Object.keys( jsNotBundled ).length === 0 ){
     log( "webpack exited in either case of:" );
-    log( `1. no main.js files found in ${ ENTRY_PATH  }` );
+    log( `1. no index.js files found in ${ ENTRY_PATH  }` );
     log( `2. you already have bundled files in ${ OUTPUT_PATH  }` );
     process.exit( 0 );
 }

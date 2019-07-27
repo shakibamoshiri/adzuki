@@ -71,8 +71,8 @@ nodepost.get( "/*", function( request, response ){
         log( USER, userAgent );
 
         const mtime_path = fs.statSync( absolutePath ).mtime.toString();
-        const mtime_main_html = fs.statSync( absolutePath + "/main.html"  ).mtime.toString();
-        const mtime = crypto.createHmac( "md5", mtime_path + mtime_main_html ).digest( "hex" );
+        const mtime_index_html = fs.statSync( absolutePath + "/index.html"  ).mtime.toString();
+        const mtime = crypto.createHmac( "md5", mtime_path + mtime_index_html ).digest( "hex" );
 
         if( cache[ absolutePath ] ){
             if( cache[ absolutePath ].mtime === mtime ){
@@ -85,7 +85,7 @@ nodepost.get( "/*", function( request, response ){
                 log( UPDATE, "cache ..." );
                 
                 cache[ absolutePath ].mtime = mtime;
-                cache[ absolutePath ].html = pm.getContent( absolutePath, mtime_main_html );
+                cache[ absolutePath ].html = pm.getContent( absolutePath, mtime_index_html );
                 
                 defer( pm.makeStat ).then( ms => ms( stat, request, rootPath ) );
 
@@ -96,7 +96,7 @@ nodepost.get( "/*", function( request, response ){
             
             cache[ absolutePath ] = { mtime: "", html: "" };
             cache[ absolutePath ].mtime = mtime;
-            cache[ absolutePath ].html = pm.getContent( absolutePath, mtime_main_html );
+            cache[ absolutePath ].html = pm.getContent( absolutePath, mtime_index_html );
 
             defer( pm.makeStat ).then( ms => ms( stat, request, rootPath ) );
             

@@ -79,7 +79,7 @@ function createDir( notExistDirs, routeDirs, validRequest, homePath, rootPath ){
 </head>
 <body>
      <h1>${ currentTitle }</h1>
-     <p>This is html part. Please build main.js to have React.js part.</p>
+     <p>This is html part. Please build index.js to have React.js part.</p>
      <div id="root" class="main"></div>
      <script type="application/javascript" src="/build/react/${ currentTitle }.bundle.js"></script>
 </body>
@@ -99,7 +99,7 @@ render( rootJs, rootHtml );`;
 
         try {
             fs.mkdirSync( absolutePath );
-            fs.writeFileSync( absolutePath + "/main.js", mainJs );
+            fs.writeFileSync( absolutePath + "/index.js", mainJs );
             fs.writeFileSync( absolutePath + "/index.html", main );
             routeDirs.push( path );
             log( CREATE, "." + path );
