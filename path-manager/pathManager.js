@@ -26,6 +26,16 @@ gitinfo[ 1 ] = user.git.repository;;
 const baseURL = user.baseURL;
 const homepageTitle = user.homeTitle;
 
+const tagsInHeade = (function(){
+    try {
+        return fs.readFileSync( globalRootPath + "/src/html/tags-in-head.html", "utf8" );
+    } catch( exception ){
+        log( exception.message );
+        log( "tags-in-head.html is required!" );
+        process.exit( 0 );
+    }
+}());
+
 const mainHtmlDir = fs.existsSync( globalRootPath + "/main-html/" );
 if( !mainHtmlDir ){
     try {
@@ -63,13 +73,13 @@ function createDir( notExistDirs, routeDirs, validRequest, homePath, rootPath ){
 `<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    ${ tagsInHeade }
     <title>${ currentTitle  }</title>
     <link rel="stylesheet" href="/build/css/${ currentTitle }.css">
 </head>
 <body>
      <h1>${ currentTitle }</h1>
-     <p>This is html part. Please build main.js to have ReactJS part.</p>
+     <p>This is html part. Please build main.js to have React.js part.</p>
      <div id="root" class="main"></div>
      <script type="application/javascript" src="/build/react/${ currentTitle }.bundle.js"></script>
 </body>
