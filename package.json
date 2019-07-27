@@ -1,7 +1,7 @@
 {
   "name": "nodepost",
-  "version": "1.2.6",
-  "description": "Bloggin in the Fun Way :)",
+  "version": "1.0.0",
+  "description": "Setup and Deploy an SPA in less than 1 minute.",
   "main": "",
   "dependencies": {
     "@material-ui/core": "^4.2.1",
@@ -28,14 +28,17 @@
     "start": "node-dev nodepost.js",
     "webpack": "./node_modules/.bin/webpack",
     "webpack.watch": "./node_modules/.bin/webpack -w",
-    "css.build": "sass  src/css/desktop.scss build/css/desktop.css",
-    "css.build.min": "sass --style compressed src/css/desktop.scss build/css/desktop.min.css",
-    "css.prefix": "./node_modules/.bin/postcss build/css/desktop.css --use=autoprefixer --map --no-map --output build/css/desktop.prefixed.css",
-    "css.prefix.min": "minify build/css/desktop.prefixed.css > build/css/desktop.prefixed.min.css"
+    "scss.build": "sass --trace --force --stop-on-error --update home:build/css/",
+    "scss.watch": "sass --trace --force --stop-on-error --watch home:build/css/",
+    "scss.build.min": "sass --trace --force --stop-on-error --update --style compressed home:build/css/"
   },
   "keywords": [
-    "blog",
-    "blogging"
+    "front-end",
+    "SPA",
+    "Node.js",
+    "React.js",
+    "Express.js",
+    "Meterial-UI"
   ],
   "author": "Shakiba Moshiri",
   "license": "MIT"
