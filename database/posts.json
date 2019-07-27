@@ -1,14 +1,11 @@
 {
     "home": {
-        "Back end": {
-            "Node.js": "",
-            "Express.js": "",
-            "JSON": ""
+        "backend": {
+            "node.js": ""
         },
-        "Front end": {
-            "JavaScript": "",
-            "HTML": "",
-            "CSS": ""
+        "frontend": {
+            "js": "",
+            "html": ""
         }
     }
 }

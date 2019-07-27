@@ -65,6 +65,7 @@ function createDir( notExistDirs, routeDirs, validRequest, homePath, rootPath ){
 <head>
     <meta charset="UTF-8">
     <title>${ currentTitle  }</title>
+    <link rel="stylesheet" href="/build/css/${ currentTitle }.css">
 </head>
 <body>
      <h1>${ currentTitle }</h1>
