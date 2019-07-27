@@ -17,3 +17,4 @@ clean.sh
 react-js/build/
 !react-js/*.js
 
+build/
