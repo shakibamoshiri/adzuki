@@ -12,9 +12,5 @@ database/stat.json
 .npmignore
 package-lock.json
 coverage/
-main-html/
-clean.sh
-react-js/build/
-!react-js/*.js
-
 build/
+index.html/
