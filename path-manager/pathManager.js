@@ -36,11 +36,11 @@ const tagsInHeade = (function(){
     }
 }());
 
-const mainHtmlDir = fs.existsSync( globalRootPath + "/main-html/" );
+const mainHtmlDir = fs.existsSync( globalRootPath + "/index.html/" );
 if( !mainHtmlDir ){
     try {
-        fs.mkdirSync( globalRootPath + "/main-html/" );
-        log( CREATE, "main-html/" );
+        fs.mkdirSync( globalRootPath + "/index.html/" );
+        log( CREATE, "index.html/" );
     } catch( exception ){
         log( exception.message );
         process.exit( 0 );
@@ -100,7 +100,7 @@ render( rootJs, rootHtml );`;
         try {
             fs.mkdirSync( absolutePath );
             fs.writeFileSync( absolutePath + "/main.js", mainJs );
-            fs.writeFileSync( absolutePath + "/main.html", main );
+            fs.writeFileSync( absolutePath + "/index.html", main );
             routeDirs.push( path );
             log( CREATE, "." + path );
         } catch( exception ){
@@ -108,9 +108,9 @@ render( rootJs, rootHtml );`;
         }
 
         try {
-            const dist = rootPath + "/main-html/" + currentTitle;
-            fs.symlinkSync( ".." + path  + "/main.html", dist );
-            log( LINK, "./main-html/" + currentTitle, "=>", "." + path );
+            const dist = rootPath + "/index.html/" + currentTitle;
+            fs.symlinkSync( ".." + path  + "/index.html", dist );
+            log( LINK, "./index.html/" + currentTitle, "=>", "." + path );
         } catch( exception ){
             if( exception.message.search( "EEXIST" ) === 0 ){
                 try {
@@ -118,9 +118,9 @@ render( rootJs, rootHtml );`;
                     const fileName = dirs.pop();
                     const parentName = dirs.pop();
                     if( parentName !== undefined ){
-                        const dist = rootPath + "/main-html/" + fileName + "-in-" + parentName;
-                        fs.symlinkSync( ".." + path + "/main.html", dist );
-                        log( LINK, "./main-html/" + currentTitle, "=>", "." + path );
+                        const dist = rootPath + "/index.html/" + fileName + "-in-" + parentName;
+                        fs.symlinkSync( ".." + path + "/index.html", dist );
+                        log( LINK, "./index.html/" + currentTitle, "=>", "." + path );
                     } else {
                         log( "Not able to create symbolic link for:", fileName );
                     }
@@ -136,11 +136,11 @@ function deleteDir( notExistKey, rootPath ){
     notExistKey.forEach(function( path ){
         try {
             rmdirSyncRec( rootPath + path );
-            fs.readdirSync( rootPath + "/main-html" ).forEach(function( file ){
-                const dist = rootPath + "/main-html/" + file;
+            fs.readdirSync( rootPath + "/index.html" ).forEach(function( file ){
+                const dist = rootPath + "/index.html/" + file;
                 if( !fs.existsSync( dist ) ){
                     fs.unlinkSync( dist );
-                    log( UNLINK, "./main-html/" + file );
+                    log( UNLINK, "./index.html/" + file );
                 }
             });
             log( DELETE, "." + path );
