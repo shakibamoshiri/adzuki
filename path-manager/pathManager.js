@@ -50,7 +50,7 @@ if( !mainHtmlDir ){
 function createDir( notExistDirs, routeDirs, validRequest, homePath, rootPath ){
     notExistDirs.forEach(function( path, index ){
         // split each name
-        const names = path.match(//\/?[A-Za-z0-9_.-]+/g );
+        const names = path.match( /\/?[A-Za-z0-9_.-]+/g );
         const dirPath = path.replace( homePath, "/" );
         const currentPath = dirPath === "/" ? baseURL + dirPath : baseURL + dirPath + "/";
         // old: separate blog contents from main repository
@@ -75,11 +75,12 @@ function createDir( notExistDirs, routeDirs, validRequest, homePath, rootPath ){
 <head>
     ${ tagsInHeade }
     <base href="${ currentPath }">
-    <title>${ currentTitle }</title>
+    <title>${ dirPath === "/" && homepageTitle || currentTitle }</title>
     <link rel="stylesheet" href="/build/css/${ currentPath }${ currentTitle }.css">
 </head>
 <body>
      <h1>${ currentTitle }</h1>
+     ${ parentTitle === null && validRequest.map( function( path ){ return `<span>path:</span> <a href="${ baseURL + path }">${ path }</a>`}).join( "<br>" ) }
      <p>This is html part. Please build index.js to have React.js part.</p>
      <div id="root" class="main"></div>
      <script type="application/javascript" src="/build/react/${ currentTitle }.bundle.js"></script>
