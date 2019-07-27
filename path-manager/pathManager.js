@@ -69,13 +69,13 @@ function createDir( notExistDirs, routeDirs, validRequest, homePath, rootPath ){
         const parentLink = names.join( "" ).replace( homePath, "/" );
 
         const absolutePath = rootPath + path;
-        const main =
+        const indexHtml =
 `<!DOCTYPE html>
 <html lang="en">
 <head>
     ${ tagsInHeade }
-    <title>${ currentTitle  }</title>
-    <link rel="stylesheet" href="/build/css/${ currentTitle }.css">
+    <title>${ currentTitle }</title>
+    <link rel="stylesheet" href="/build/css/${ currentPath }${ currentTitle }.css">
 </head>
 <body>
      <h1>${ currentTitle }</h1>
@@ -85,7 +85,7 @@ function createDir( notExistDirs, routeDirs, validRequest, homePath, rootPath ){
 </body>
 </html>`;
 
-    const mainJs =
+    const indexJs =
 `import React, { Fragment, Component } from "react";
 import { render } from "react-dom";
 
@@ -99,8 +99,9 @@ render( rootJs, rootHtml );`;
 
         try {
             fs.mkdirSync( absolutePath );
-            fs.writeFileSync( absolutePath + "/index.js", mainJs );
-            fs.writeFileSync( absolutePath + "/index.html", main );
+            fs.writeFileSync( absolutePath + "/index.js", indexJs );
+            fs.writeFileSync( absolutePath + "/index.html", indexHtml );
+            fs.writeFileSync( absolutePath + `/${ currentTitle }.scss`, "" );
             routeDirs.push( path );
             log( CREATE, "." + path );
         } catch( exception ){
