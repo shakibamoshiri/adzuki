@@ -50,9 +50,9 @@ if( !mainHtmlDir ){
 function createDir( notExistDirs, routeDirs, validRequest, homePath, rootPath ){
     notExistDirs.forEach(function( path, index ){
         // split each name
-        const names = path.match( /\/?[A-Za-z0-9_.-]+/g );
-        const tmp = path.replace( homePath, "/" );
-        const currentPath = tmp === "/" ? baseURL + tmp : baseURL + tmp + "/";
+        const names = path.match(//\/?[A-Za-z0-9_.-]+/g );
+        const dirPath = path.replace( homePath, "/" );
+        const currentPath = dirPath === "/" ? baseURL + dirPath : baseURL + dirPath + "/";
         // old: separate blog contents from main repository
         // const gitPath = currentPath;
         // new include blog contents in main repository
@@ -74,6 +74,7 @@ function createDir( notExistDirs, routeDirs, validRequest, homePath, rootPath ){
 <html lang="en">
 <head>
     ${ tagsInHeade }
+    <base href="${ currentPath }">
     <title>${ currentTitle }</title>
     <link rel="stylesheet" href="/build/css/${ currentPath }${ currentTitle }.css">
 </head>
