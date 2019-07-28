@@ -76,7 +76,7 @@ function createDir( notExistDirs, routeDirs, validRequest, homePath, rootPath ){
     ${ tagsInHeade }
     <base href="${ currentPath }">
     <title>${ dirPath === "/" && homepageTitle || currentTitle }</title>
-    <link rel="stylesheet" href="/build/css/${ currentPath }${ currentTitle }.css">
+    <link rel="stylesheet" href="/build/css${ currentPath + currentTitle }.css">
 </head>
 <body>
      <h1>${ currentTitle }</h1>
