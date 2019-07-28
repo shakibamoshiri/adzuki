@@ -28,9 +28,9 @@
     "start": "node-dev adzuki.js",
     "webpack": "./node_modules/.bin/webpack",
     "webpack.watch": "./node_modules/.bin/webpack -w",
-    "scss.build": "sass --trace --force --stop-on-error --update home:build/css/",
-    "scss.watch": "sass --trace --force --stop-on-error --watch home:build/css/",
-    "scss.build.min": "sass --trace --force --stop-on-error --update --style compressed home:build/css/"
+    "scss.build": "sass --trace --stop-on-error --update home:build/css/",
+    "scss.watch": "sass --trace --stop-on-error --watch home:build/css/",
+    "scss.build.min": "sass --trace --stop-on-error --update --style compressed home:build/css/"
   },
   "keywords": [
     "front-end",
