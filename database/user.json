@@ -1,7 +1,7 @@
 {
-  "homeTitle": "NodePost | Blogging in the Fun Way",
+  "homeTitle": "Adzuki | SPA in less than 1 minute",
   "baseURL": "",
-  "statAddress": "/stat",
+  "statAddress": "/",
   "git": {
     "username" : "",
     "repository": ""
