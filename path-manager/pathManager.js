@@ -36,11 +36,11 @@ const tagsInHeade = (function(){
     }
 }());
 
-const mainHtmlDir = fs.existsSync( globalRootPath + "/index.html/" );
+const mainHtmlDir = fs.existsSync( globalRootPath + "/index-html/" );
 if( !mainHtmlDir ){
     try {
-        fs.mkdirSync( globalRootPath + "/index.html/" );
-        log( CREATE, "index.html/" );
+        fs.mkdirSync( globalRootPath + "/index-html/" );
+        log( CREATE, "index-html/" );
     } catch( exception ){
         log( exception.message );
         process.exit( 0 );
@@ -111,9 +111,9 @@ render( rootJs, rootHtml );`;
         }
 
         try {
-            const dist = rootPath + "/index.html/" + currentTitle;
-            fs.symlinkSync( ".." + path  + "/index.html", dist );
-            log( LINK, "./index.html/" + currentTitle, "=>", "." + path );
+            const dist = rootPath + "/index-html/" + currentTitle;
+            fs.symlinkSync( ".." + path  + "/index-html", dist );
+            log( LINK, "./index-html/" + currentTitle, "=>", "." + path );
         } catch( exception ){
             if( exception.message.search( "EEXIST" ) === 0 ){
                 try {
@@ -121,9 +121,9 @@ render( rootJs, rootHtml );`;
                     const fileName = dirs.pop();
                     const parentName = dirs.pop();
                     if( parentName !== undefined ){
-                        const dist = rootPath + "/index.html/" + fileName + "-in-" + parentName;
-                        fs.symlinkSync( ".." + path + "/index.html", dist );
-                        log( LINK, "./index.html/" + currentTitle, "=>", "." + path );
+                        const dist = rootPath + "/index-html/" + fileName + "-in-" + parentName;
+                        fs.symlinkSync( ".." + path + "/index-html", dist );
+                        log( LINK, "./index-html/" + currentTitle, "=>", "." + path );
                     } else {
                         log( "Not able to create symbolic link for:", fileName );
                     }
@@ -139,11 +139,11 @@ function deleteDir( notExistKey, rootPath ){
     notExistKey.forEach(function( path ){
         try {
             rmdirSyncRec( rootPath + path );
-            fs.readdirSync( rootPath + "/index.html" ).forEach(function( file ){
-                const dist = rootPath + "/index.html/" + file;
+            fs.readdirSync( rootPath + "/index-html" ).forEach(function( file ){
+                const dist = rootPath + "/index-html/" + file;
                 if( !fs.existsSync( dist ) ){
                     fs.unlinkSync( dist );
-                    log( UNLINK, "./index.html/" + file );
+                    log( UNLINK, "./index-html/" + file );
                 }
             });
             log( DELETE, "." + path );
