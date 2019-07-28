@@ -8,7 +8,7 @@ const co       = require( "./path-manager/colorOrganizer" );
 const rm       = require( "./route-manager/routeManager" );
 const dm       = require( "./database-manager/databaseManager" );
 
-const nodepost = express();
+const adzuki = express();
 const PORT     = 1400;
 
 const log = console.log;
@@ -29,8 +29,8 @@ const routeJson = rm.makeRoute( postsJson );
 pm.manageDir( routeJson, routeDirs, rootPath );
 
 // always servse these
-nodepost.use( "/build",  express.static( rootPath + "/build" ) );
-nodepost.use( "/vendor",  express.static( rootPath + "/vendor" ) );
+adzuki.use( "/build",  express.static( rootPath + "/build" ) );
+adzuki.use( "/vendor",  express.static( rootPath + "/vendor" ) );
 
 // cache each post after last modification
 const cache = {};
@@ -41,7 +41,7 @@ async function defer( F ){
 }
 
 // Any GET request will be handled here
-nodepost.get( "/*", function( request, response ){
+adzuki.get( "/*", function( request, response ){
 
     const requestPath = request.path;
 
@@ -104,7 +104,7 @@ nodepost.get( "/*", function( request, response ){
     }
 });
 
-nodepost.post( "/gitpush", function( request, response ){
+adzuki.post( "/gitpush", function( request, response ){
     log( "gitpush" );
     request.on( "data", function( chunk ){
         const secret = "this-will-be-the-secret-key";
@@ -137,7 +137,7 @@ nodepost.post( "/gitpush", function( request, response ){
     response.status( 200 ).end();
 });
 
-nodepost.listen( PORT, function(){
+adzuki.listen( PORT, function(){
     log( `Server is running at http://localhost:${ PORT }/` );
 });
 

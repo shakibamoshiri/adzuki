@@ -1,5 +1,5 @@
 {
-  "name": "nodepost",
+  "name": "adzuki",
   "version": "1.0.0",
   "description": "Setup and Deploy an SPA in less than 1 minute.",
   "main": "",
@@ -25,7 +25,7 @@
     "webpack-cli": "^3.3.3"
   },
   "scripts": {
-    "start": "node-dev nodepost.js",
+    "start": "node-dev adzuki.js",
     "webpack": "./node_modules/.bin/webpack",
     "webpack.watch": "./node_modules/.bin/webpack -w",
     "scss.build": "sass --trace --force --stop-on-error --update home:build/css/",
