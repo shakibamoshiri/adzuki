@@ -82,7 +82,9 @@ function createDir( notExistDirs, routeDirs, validRequest, homePath, rootPath ){
      <h1>${ currentTitle }</h1>
      ${ parentTitle === null && validRequest.map( function( path ){ return `<span>path:</span> <a href="${ baseURL + path }">${ path }</a>`}).join( "<br>" ) || "" }
      <p>This is html part. Please build index.js to have React.js part.</p>
-     <div id="root" class="main"></div>
+     <div id="root" class="main">
+        <div class="loading"></div>
+     </div>
      <script defer type="application/javascript" src="/build/react/${ currentTitle }.bundle.js"></script>
 </body>
 </html>`;
