@@ -12,7 +12,7 @@
 
 <h1 align="center">License</h1>
 <p id="bottom" align="center">
-  nodepost copyright &copy; 20XX Shakiba Moshiri
+  adzuki copyright &copy; 20XX Shakiba Moshiri
   <br>
   <br>
   ▒█▀▄▀█ ▀█▀ ▀▀█▀▀<br>
