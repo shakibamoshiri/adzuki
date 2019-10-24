@@ -1,6 +1,6 @@
 #!/bin/bash
 rm -fr home/
-rm -fr index.html/
+rm -fr index-html/
 rm -fr database/route.dirs
 rm -fr database/route.path
 rm -fr database/route.link
